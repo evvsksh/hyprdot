@@ -3,7 +3,7 @@
 # config
 required_pkgs="hyprland wayland wayland-protocols polkit-gnome xorg-xwayland waybar rofi
                zip unzip pipewire wireplumber networkmanager pamixer fastfetch vim nano
-               noto-fonts kitty fish"
+               noto-fonts kitty fish git firefox"
 
 # colors
 black="\033[30m"
@@ -73,6 +73,11 @@ fi
 mkdir -p "$tmp_path"
 cp /etc/pacman.d/mirrorlist "$tmp_path/mirrorlist.bak"
 
+# configs
+install_configs() {
+    # download configs first
+}
+
 # setup
 setup() {
     # root one-time password
@@ -91,6 +96,8 @@ setup() {
 
     # install required packages
     sudo pacman -Syu --needed --noconfirm $required_pkgs
+
+    install_configs
 }
 
 clear
