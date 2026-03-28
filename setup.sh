@@ -73,9 +73,23 @@ fi
 mkdir -p "$tmp_path"
 cp /etc/pacman.d/mirrorlist "$tmp_path/mirrorlist.bak"
 
-# configs
+#
 install_configs() {
-    # download configs first
+    echo "${aqua}Installing configs..."
+
+    cfg_tmp="$tmp_path/.hyprdot"
+    git clone --depth 1 -b config https://github.com/evvsksh/hyprdot.git "$cfg_tmp"
+    rm -rf "$cfg_tmp/.git"
+
+    # ensure ~/.config exists
+    mkdir -p "$HOME/.config"
+
+    # copy configs
+
+    cp -rT "$cfg_tmp/config/hypr" "$HOME/.config/hypr"              # hyprland
+
+
+    echo "${green}Configs installed."
 }
 
 # setup
